@@ -266,7 +266,8 @@ footer small { margin-left: auto; color: #777; }
 .showcase-controls { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 26px; }
 .showcase-controls button { min-height: 38px; padding: 0 13px; border: 1px solid #ffffff27; border-radius: 2px; background: transparent; color: #b4b0ac; font: 500 10px 'DM Sans', Arial, sans-serif; cursor: pointer; transition: color .2s, border-color .2s, background .2s; }
 .showcase-controls button:hover { color: #080808; border-color: var(--orange); background: var(--orange); }
-.showcase-layout.is-changing .showcase-card { transform: rotateX(2deg) rotateY(calc(var(--slide-direction, 1) * 15deg)) translateX(calc(var(--slide-direction, 1) * -34px)) translateZ(4px) scale(.96); opacity: 0; filter: blur(4px); }\n.showcase-layout.is-changing .showcase-copy { opacity: 0; transform: translateX(calc(var(--slide-direction, 1) * -9px)) translateY(7px); filter: blur(3px); }
+.showcase-layout.is-changing .showcase-card { transform: rotateX(2deg) rotateY(calc(var(--slide-direction, 1) * 15deg)) translateX(calc(var(--slide-direction, 1) * -34px)) translateZ(4px) scale(.96); opacity: 0; filter: blur(4px); }
+.showcase-layout.is-changing .showcase-copy { opacity: 0; transform: translateX(calc(var(--slide-direction, 1) * -9px)) translateY(7px); filter: blur(3px); }
 
 @media (max-width: 900px) {
   .showcase-layout { grid-template-columns: 52px minmax(300px, 1.2fr) minmax(190px, .85fr); gap: 22px; }
