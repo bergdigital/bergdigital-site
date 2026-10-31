@@ -1,722 +1,78 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0b0b0b">
-  <meta name="description" content="Berg Digital, Bursa Karacabey'de işletmelere özel NFC kartlar ve dijital kartvizit çözümleri sunmaya hazırlanıyor.">
-  <title>Berg Digital | Dijital Dünyaya Bir Dokunuş</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --bg: #0b0b0b;
-      --panel: #121212;
-      --panel2: #171717;
-      --white: #f6f5f0;
-      --muted: #a4a39d;
-      --gold: #e7c777;
-      --line: rgba(255,255,255,.11);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--white);
-      font-family: 'DM Sans', sans-serif;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    .wrap { width: min(1160px, 88%); margin: auto; }
-
-    .announcement {
-      background: var(--gold);
-      color: #17140d;
-      text-align: center;
-      padding: 8px 12px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.6px;
-      text-transform: uppercase;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(11,11,11,.91);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .nav {
-      min-height: 83px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 25px;
-    }
-
-    .wordmark {
-      font-family: 'Manrope', sans-serif;
-      font-size: 21px;
-      line-height: 1.2;
-      font-weight: 800;
-      letter-spacing: 2.5px;
-      white-space: nowrap;
-    }
-
-    .wordmark span { color: var(--gold); }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 29px;
-      font-size: 13px;
-      color: #d0cfc9;
-    }
-
-    .nav-links a:hover { color: var(--gold); }
-
-    .outline-btn, .gold-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      min-height: 48px;
-      padding: 0 21px;
-      font-size: 13px;
-      font-weight: 700;
-      border-radius: 4px;
-      transition: .2s ease;
-    }
-
-    .outline-btn {
-      border: 1px solid rgba(231,199,119,.6);
-    }
-
-    .outline-btn:hover { background: rgba(231,199,119,.1); }
-
-    .gold-btn {
-      background: var(--gold);
-      color: #17140d;
-    }
-
-    .gold-btn:hover {
-      background: #f1d99b;
-      transform: translateY(-2px);
-    }
-
-    .hero {
-      position: relative;
-      padding: 115px 0 105px;
-      overflow: hidden;
-      background:
-        radial-gradient(ellipse at 82% 35%, rgba(166,126,45,.13), transparent 37%),
-        linear-gradient(180deg, #0b0b0b, #0e0e0d);
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      right: -150px;
-      top: 30px;
-      width: 500px;
-      height: 500px;
-      border: 1px solid rgba(231,199,119,.09);
-      border-radius: 50%;
-      box-shadow: 0 0 0 60px rgba(231,199,119,.025),
-                  0 0 0 120px rgba(231,199,119,.018);
-      pointer-events: none;
-    }
-
-    .hero-content { max-width: 800px; position: relative; z-index: 1; }
-
-    .eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      color: var(--gold);
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 2.8px;
-      margin-bottom: 27px;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 28px;
-      height: 1px;
-      background: var(--gold);
-    }
-
-    h1, h2, h3 { font-family: 'Manrope', sans-serif; }
-
-    h1 {
-      font-size: clamp(43px, 7.1vw, 82px);
-      font-weight: 600;
-      line-height: 1.12;
-      letter-spacing: -3.8px;
-      margin-bottom: 27px;
-    }
-
-    h1 span {
-      color: var(--gold);
-      font-weight: 500;
-    }
-
-    .hero-description {
-      max-width: 600px;
-      font-size: 16px;
-      color: #aaa9a2;
-      line-height: 1.95;
-      margin-bottom: 32px;
-    }
-
-    .hero-actions { display: flex; gap: 13px; flex-wrap: wrap; }
-
-    .hero-note {
-      margin-top: 43px;
-      padding-top: 23px;
-      border-top: 1px solid var(--line);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 22px;
-      color: #aaa9a2;
-      font-size: 12px;
-    }
-
-    .hero-note span::before {
-      content: "✦";
-      color: var(--gold);
-      margin-right: 8px;
-    }
-
-    section { padding: 95px 0; }
-
-    .section-top { max-width: 670px; margin-bottom: 42px; }
-
-    .section-top h2 {
-      font-size: clamp(30px, 4vw, 46px);
-      line-height: 1.22;
-      letter-spacing: -1.7px;
-      margin-bottom: 17px;
-    }
-
-    .section-top p { color: var(--muted); font-size: 15px; }
-
-    .services { background: #101010; border-block: 1px solid var(--line); }
-
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 17px;
-    }
-
-    .service-card {
-      min-height: 270px;
-      background: linear-gradient(145deg, #191919, #101010);
-      border: 1px solid var(--line);
-      padding: 27px;
-      border-radius: 7px;
-      transition: .25s;
-    }
-
-    .service-card:hover {
-      border-color: rgba(231,199,119,.5);
-      transform: translateY(-4px);
-    }
-
-    .service-number {
-      color: var(--gold);
-      font-size: 12px;
-      letter-spacing: 2px;
-      margin-bottom: 27px;
-    }
-
-    .service-card h3 { font-size: 19px; margin-bottom: 11px; }
-
-    .service-card p { font-size: 13px; color: var(--muted); }
-
-    .service-label {
-      display: inline-block;
-      margin-top: 24px;
-      color: var(--gold);
-      font-size: 10px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-    }
-
-    .nfc-section {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 75px;
-      align-items: center;
-    }
-
-    .nfc-art {
-      min-height: 400px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      overflow: hidden;
-      background:
-        radial-gradient(ellipse at 50% 50%, #292317 0%, #151412 38%, #101010 75%);
-    }
-
-    .nfc-card {
-      width: 245px;
-      height: 155px;
-      border: 1px solid rgba(231,199,119,.7);
-      border-radius: 11px;
-      background: linear-gradient(140deg, #26231b, #0e0e0d 75%);
-      padding: 22px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transform: rotate(-9deg);
-      box-shadow: 0 25px 65px rgba(0,0,0,.5);
-    }
-
-    .nfc-card .card-brand {
-      font-family: 'Manrope', sans-serif;
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 2px;
-    }
-
-    .nfc-card .card-brand span { color: var(--gold); }
-
-    .nfc-mark {
-      text-align: right;
-      color: var(--gold);
-      font-size: 35px;
-      line-height: 1;
-    }
-
-    .nfc-caption {
-      color: #c3bda9;
-      font-size: 8px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .nfc-copy h2 {
-      font-size: clamp(30px, 4vw, 43px);
-      line-height: 1.25;
-      letter-spacing: -1.6px;
-      margin-bottom: 20px;
-    }
-
-    .nfc-copy p { color: var(--muted); font-size: 14px; margin-bottom: 18px; }
-
-    .nfc-copy strong { color: #eee7d4; }
-
-    .steps { display: grid; gap: 15px; margin-top: 28px; }
-
-    .step {
-      display: flex;
-      align-items: flex-start;
-      gap: 15px;
-      color: #c3c2bc;
-      font-size: 13px;
-    }
-
-    .step-icon {
-      flex-shrink: 0;
-      display: grid;
-      place-items: center;
-      width: 30px;
-      height: 30px;
-      color: var(--gold);
-      border: 1px solid rgba(231,199,119,.4);
-      border-radius: 50%;
-      font-size: 12px;
-    }
-
-    .local {
-      background: #101010;
-      border-block: 1px solid var(--line);
-    }
-
-    .local-box {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 35px;
-      padding: 37px;
-      border: 1px solid rgba(231,199,119,.28);
-      border-radius: 7px;
-      background: linear-gradient(120deg, #1b1913, #111);
-    }
-
-    .local-box h2 { font-size: clamp(25px, 3.5vw, 37px); margin-bottom: 8px; }
-
-    .local-box p { color: var(--muted); font-size: 13px; }
-
-    .location-tag {
-      flex-shrink: 0;
-      border: 1px solid rgba(231,199,119,.45);
-      color: var(--gold);
-      padding: 12px 16px;
-      font-size: 12px;
-      border-radius: 4px;
-    }
-
-    .contact { text-align: center; }
-
-    .contact-inner {
-      max-width: 770px;
-      margin: auto;
-      padding: 58px 25px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: radial-gradient(ellipse at top, #282114, #111 68%);
-    }
-
-    .contact-inner .eyebrow { justify-content: center; }
-
-    .contact-inner h2 {
-      font-size: clamp(31px, 5vw, 49px);
-      line-height: 1.2;
-      letter-spacing: -1.7px;
-      margin-bottom: 17px;
-    }
-
-    .contact-inner p { color: var(--muted); font-size: 14px; margin-bottom: 26px; }
-
-    .socials {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 13px;
-      flex-wrap: wrap;
-      margin-top: 27px;
-    }
-
-    .social-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      border: 1px solid var(--line);
-      padding: 11px 14px;
-      border-radius: 5px;
-      color: #dedbd2;
-      font-size: 12px;
-      transition: .2s;
-    }
-
-    .social-link:hover { border-color: var(--gold); color: var(--gold); }
-
-    .social-link img { width: 19px; height: 19px; object-fit: contain; }
-
-    footer { border-top: 1px solid var(--line); padding: 26px 0; }
-
-    .footer-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .footer-note { color: #88877f; font-size: 11px; }
-
-    .footer-location { color: #aaa9a2; font-size: 11px; }
-
-    @media (max-width: 850px) {
-      .nav { min-height: 72px; flex-wrap: wrap; padding: 18px 0; }
-      .nav-links { order: 3; width: 100%; gap: 20px; flex-wrap: wrap; }
-      .nav > .outline-btn { padding: 0 13px; min-height: 41px; }
-      .hero { padding: 85px 0 75px; }
-      .nfc-section { grid-template-columns: 1fr; gap: 40px; }
-      .nfc-art { min-height: 330px; }
-      .service-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
-      section { padding: 75px 0; }
-    }
-
-    @media (max-width: 520px) {
-      .wrap { width: 90%; }
-      .announcement { font-size: 9px; letter-spacing: 1px; }
-      .wordmark { font-size: 18px; }
-      .nav-links { gap: 15px; font-size: 11px; }
-      .nav > .outline-btn { font-size: 11px; }
-      .hero { padding: 68px 0 58px; }
-      h1 { font-size: clamp(40px, 12vw, 57px); letter-spacing: -2px; }
-      .hero-description { font-size: 14px; }
-      .hero-note { gap: 10px 18px; }
-      .service-grid { grid-template-columns: 1fr; }
-      .service-card { min-height: auto; }
-      .local-box { padding: 25px; align-items: flex-start; flex-direction: column; }
-      .nfc-art { min-height: 280px; }
-      .nfc-card { width: 215px; height: 137px; }
-      .contact-inner { padding: 43px 18px; }
-      .socials { flex-direction: column; }
-      .social-link { width: 100%; justify-content: center; }
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="Berg Digital — sana özel NFC kartlar ve dijital deneyimler.">
+  <title>Berg Digital — Dokunuş kadar hızlı</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <div class="announcement">
-    Çok yakında · Berg Digital ile tanışmaya hazır olun
-  </div>
-
-  <header>
-    <div class="wrap nav">
-      <a class="wordmark" href="#anasayfa">BERG <span>DIGITAL</span></a>
-
-      <nav class="nav-links" aria-label="Ana menü">
-        <a href="#anasayfa">Ana Sayfa</a>
-        <a href="#cozumler">Çözümlerimiz</a>
-        <a href="#nfc">NFC Nedir?</a>
-        <a href="#hakkimizda">Hakkımızda</a>
+  <main id="site" class="site" inert>
+    <header class="topbar">
+      <a class="brand" href="#anasayfa" aria-label="Berg Digital ana sayfa">
+        <img src="assets/bergdigital-logo.png" alt="Berg Digital">
+      </a>
+      <nav aria-label="Ana menü">
+        <a href="#nasil-calisir">Nasıl çalışır?</a>
+        <a href="#iletisim">İletişim</a>
       </nav>
+      <a class="nav-cta" href="#iletisim">Kartını tasarla <span>↗</span></a>
+    </header>
 
-      <a class="outline-btn" href="#iletisim">Bize Ulaşın </a>
-    </div>
-  </header>
-
-  <main>
     <section class="hero" id="anasayfa">
-      <div class="wrap">
-        <div class="hero-content">
-          <div class="eyebrow">Bursa · Karacabey</div>
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> TEMASSIZ. KİŞİSEL. SANA ÖZEL.</p>
+        <h1>İlk izlenimin,<br><em>tek dokunuş</em><br>uzağında.</h1>
+        <p class="intro-copy">Markanı taşıyan özel tasarım NFC kartlar ve her dokunuşta seni anlatan dijital arayüzler.</p>
+        <a class="button" href="#iletisim">Kartını tasarla <span>↗</span></a>
+        <p class="microcopy">Telefonunu dokundur. Bağlantın anında paylaşılsın.</p>
+      </div>
 
-          <h1>
-            İşletmenizin<br>
-            dijital dünyaya<br>
-            <span>dokunduğu yer.</span>
-          </h1>
+      <div class="hero-art" aria-label="Berg Digital NFC kartı">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <figure class="card">
+          <img class="card-symbol" src="assets/bergdigital-isaret-renkli-negatif.png" alt="Berg Digital marka işareti">
+          <span class="card-wordmark">bergdigital</span>
+        </figure>
+        <span class="art-caption">DOKUNUŞLA BAĞLAN</span>
+      </div>
+      <div class="hero-index">01 <span>—</span> BERG DIGITAL</div>
+    </section>
 
-          <p class="hero-description">
-            İşletmelere özel NFC kartvizitler ve dijital bağlantı
-            çözümleriyle tanışın. Google yorumlarınız, Instagram
-            sayfanız ve WhatsApp iletişim hattınız tek bir dokunuşla
-            müşterilerinizin karşısında.
-          </p>
-
-          <div class="hero-actions">
-            <a class="gold-btn" href="#cozumler">Çözümlerimizi Keşfedin </a>
-            <a class="outline-btn" href="#nfc">NFC Nasıl Çalışır?</a>
-          </div>
-
-          <div class="hero-note">
-            <span>İşletmenize özel tasarım</span>
-            <span>Temassız dijital deneyim</span>
-            <span>Yakında hizmetinizde</span>
-          </div>
-        </div>
+    <section class="how" id="nasil-calisir">
+      <div class="how-heading">
+        <p class="eyebrow">BASİTÇE ÇALIŞIR</p>
+        <h2>Bir dokunuş,<br><em>yeni bir bağlantı.</em></h2>
+      </div>
+      <div class="steps">
+        <article><b>01</b><div><h3>Kartını tasarla</h3><p>Markana ve tarzına özel bir NFC kart seç.</p></div></article>
+        <article><b>02</b><div><h3>Telefonu dokundur</h3><p>NFC ile bilgilerin anında ekranda açılsın.</p></div></article>
+        <article><b>03</b><div><h3>Bağlantıda kal</h3><p>Dijital profilini ihtiyacına göre güncelle.</p></div></article>
       </div>
     </section>
 
-    <section class="services" id="cozumler">
-      <div class="wrap">
-        <div class="section-top">
-          <div class="eyebrow">Neler Yapıyoruz?</div>
-          <h2>Bir karttan çok daha fazlası.</h2>
-          <p>
-            Her işletmenin kendine özgü bir hikâyesi vardır.
-            Biz bu hikâyeyi müşterilerinize ulaştırmanın daha
-            pratik ve modern yollarını hazırlıyoruz.
-          </p>
-        </div>
-
-        <div class="service-grid">
-          <article class="service-card">
-            <div class="service-number">01 / GOOGLE</div>
-            <h3>Google Yorum Kartları</h3>
-            <p>
-              Müşterilerinizi işletmenizin Google değerlendirme
-              sayfasına yönlendirin. Yorum bırakma sürecini kolaylaştırın.
-            </p>
-            <div class="service-label">İşletmeye özel bağlantı</div>
-          </article>
-
-          <article class="service-card">
-            <div class="service-number">02 / INSTAGRAM</div>
-            <h3>Sosyal Medya Kartları</h3>
-            <p>
-              Instagram profilinizi müşterilerinizle kolayca paylaşın.
-              Dijital varlığınızı tek dokunuşla erişilebilir kılın.
-            </p>
-            <div class="service-label">Dijital görünürlük</div>
-          </article>
-
-          <article class="service-card">
-            <div class="service-number">03 / WHATSAPP</div>
-            <h3>WhatsApp İletişim Kartları</h3>
-            <p>
-              Müşterilerinizin işletmenizin WhatsApp iletişim hattına
-              hızlıca ulaşmasını sağlayın.
-            </p>
-            <div class="service-label">Kolay iletişim</div>
-          </article>
-
-          <article class="service-card">
-            <div class="service-number">04 / BUSINESS</div>
-            <h3>Dijital Kartvizitler</h3>
-            <p>
-              İşletmenize özel dijital bir sayfada iletişim
-              bilgilerinizi ve önemli bağlantılarınızı bir araya getirin.
-            </p>
-            <div class="service-label">Size özel dijital profil</div>
-          </article>
-
-          <article class="service-card">
-            <div class="service-number">05 / CUSTOM</div>
-            <h3>Kişiye Özel Tasarım</h3>
-            <p>
-              Marka kimliğinize uygun, işletmenizin tarzını
-              yansıtan kişiselleştirilmiş kart çözümleri.
-            </p>
-            <div class="service-label">Markanıza özel</div>
-          </article>
-
-          <article class="service-card">
-            <div class="service-number">06 / NFC</div>
-            <h3>Akıllı Bağlantı Deneyimi</h3>
-            <p>
-              Tek bir NFC kartıyla farklı dijital içeriklere
-              ulaşmayı kolaylaştıran pratik çözümler.
-            </p>
-            <div class="service-label">Yeni nesil teknoloji</div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="nfc">
-      <div class="wrap nfc-section">
-        <div class="nfc-art" aria-label="Berg Digital yazılı örnek NFC kart tasarımı">
-          <div class="nfc-card">
-            <div class="card-brand">BERG <span>DIGITAL</span></div>
-            <div class="nfc-mark">)))</div>
-            <div class="nfc-caption">Your business. One touch.</div>
-          </div>
-        </div>
-
-        <div class="nfc-copy">
-          <div class="eyebrow">Teknolojiyi Tanıyın</div>
-          <h2>NFC nedir, nasıl çalışır?</h2>
-
-          <p>
-            <strong>NFC (Yakın Alan İletişimi)</strong>, birbirine
-            çok yakın cihazların kablosuz iletişim kurmasını sağlayan
-            bir teknolojidir. Temassız ödeme sistemlerinde de benzer
-            teknolojiler kullanılır.
-          </p>
-
-          <p>
-            NFC kartlarımız, tanımlanan bir internet bağlantısını
-            uyumlu telefonlara yaklaştırıldığında açabilecek şekilde
-            hazırlanabilir. Böylece müşterileriniz dijital profilinize
-            veya seçilen bağlantıya pratik biçimde ulaşabilir.
-          </p>
-
-          <div class="steps">
-            <div class="step">
-              <div class="step-icon">01</div>
-              <div><strong>Yaklaştırın.</strong><br>Uyumlu telefonu NFC kartına yaklaştırın.</div>
-            </div>
-            <div class="step">
-              <div class="step-icon">02</div>
-              <div><strong>Bağlantıya dokunun.</strong><br>Telefon ekranında görünen bildirimi açın.</div>
-            </div>
-            <div class="step">
-              <div class="step-icon">03</div>
-              <div><strong>Dijital dünyanıza ulaşın.</strong><br>İşletmenizin tanımlanan sayfasını ziyaret edin.</div>
-            </div>
-          </div>
-
-          <p style="font-size:12px;margin-top:20px;">
-            Not: NFC desteği, telefon ayarları ve cihazın kullanım
-            şekli deneyimi etkileyebilir. Bazı telefonlarda farklı
-            bir yöntem gerekebilir.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="local" id="hakkimizda">
-      <div class="wrap">
-        <div class="local-box">
-          <div>
-            <div class="eyebrow">Yerel Bir Marka, Dijital Bir Vizyon</div>
-            <h2>Karacabey'den dijital geleceğe.</h2>
-            <p>
-              Berg Digital, Bursa'nın Karacabey ilçesinde işletmelere
-              özel NFC kartlar ve dijital bağlantı çözümleri sunmak
-              üzere hazırlanmaktadır. Amacımız, yerel işletmelerin
-              dijital dünyada müşterilerine daha kolay ulaşmasına
-              yardımcı olmaktır.
-            </p>
-          </div>
-          <div class="location-tag">BURSA · KARACABEY</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="contact" id="iletisim">
-      <div class="wrap">
-        <div class="contact-inner">
-          <div class="eyebrow">Yeni Bir Başlangıç</div>
-          <h2>Dijital dönüşümünüz<br>çok yakında başlıyor.</h2>
-          <p>
-            Berg Digital çok yakında hizmetinizde.<br>
-            İşletmenize özel dijital çözümler için bizi takipte kalın.
-          </p>
-
-          <a class="gold-btn" href="#anasayfa">Berg Digital'i Keşfedin ↑</a>
-
-          <div class="socials">
-            <!-- Aşağıdaki bağlantıları kendi hesaplarınızla değiştirin. -->
-            <a class="social-link" href="https://www.instagram.com/berg.digitall/" target="_blank" rel="noopener noreferrer">
-              <img src="https://cdn.simpleicons.org/instagram/E7C777" alt="">
-              Instagram
-            </a>
-
-            <a class="social-link" href="https://www.whatsapp.com/" target="_blank" rel="noopener noreferrer">
-              <img src="https://cdn.simpleicons.org/whatsapp/E7C777" alt="">
-              WhatsApp
-            </a>
-
-            <a class="social-link" href="https://www.google.com/" target="_blank" rel="noopener noreferrer">
-              <img src="https://cdn.simpleicons.org/google/E7C777" alt="">
-              Google
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
+    <footer id="iletisim">
+      <span>Bağlantını tasarlamaya hazır mısın?</span>
+      <a href="https://www.instagram.com/berg.digitall/" target="_blank" rel="noopener noreferrer">Instagram’dan bize ulaş <span>↗</span></a>
+      <small>© 2026 Berg Digital</small>
+    </footer>
   </main>
 
-  <footer>
-    <div class="wrap footer-row">
-      <a class="wordmark" href="#anasayfa">BERG <span>DIGITAL</span></a>
-      <div class="footer-note">
-        ©️ <span id="year"></span> Berg Digital. Tüm hakları saklıdır.
-      </div>
-      <div class="footer-location">Bursa / Karacabey, Türkiye</div>
+  <section id="intro" class="intro-screen" aria-label="Berg Digital açılış animasyonu">
+    <video id="logo-video" playsinline preload="auto" aria-label="Berg Digital logo animasyonu">
+      <source src="assets/bergdigital-logo-animasyon.mp4" type="video/mp4">
+    </video>
+    <div class="intro-shade"></div>
+    <div class="intro-caption">
+      <p>DAĞ GİBİ SAĞLAM. DOKUNUŞ KADAR HIZLI.</p>
+      <span id="sound-hint">SESİ AÇMAK İÇİN DOKUN</span>
     </div>
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
-  </script>
+    <button id="skip-intro" class="skip-button" type="button">Geç <span>↗</span></button>
+  </section>
+  <script src="script.js"></script>
 </body>
 </html>
+
