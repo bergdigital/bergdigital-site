@@ -78,7 +78,7 @@ if (showcase) {
       preload.src = product.image;
       if (preload.complete) resolve();
     });
-    const exitMotion = new Promise((resolve) => window.setTimeout(resolve, 260));
+    const exitMotion = new Promise((resolve) => window.setTimeout(resolve, 300));
     await Promise.all([imageReady, exitMotion]);
 
     activeIndex = next;
@@ -99,7 +99,7 @@ if (showcase) {
     });
 
     window.requestAnimationFrame(() => layout.classList.remove('is-changing'));
-    window.setTimeout(() => { switching = false; }, 520);
+    window.setTimeout(() => { switching = false; }, 650);
   }
   function resetCardTilt() {
     card.classList.remove('is-dragging');
@@ -129,7 +129,7 @@ if (showcase) {
       card.classList.add('is-dragging');
       stage.classList.add('is-dragging');
     }
-    const tiltY = Math.max(-27, Math.min(27, -7 + dx * 0.14));
+    const tiltY = Math.max(-38, Math.min(38, -7 + dx * 0.22));
     const tiltX = Math.max(-22, Math.min(22, 2 - dy * 0.14));
     card.style.setProperty('--tilt-x', `${tiltX}deg`);
     card.style.setProperty('--tilt-y', `${tiltY}deg`);
@@ -147,7 +147,7 @@ if (showcase) {
     suppressCardClick = true;
     window.setTimeout(() => { suppressCardClick = false; }, 350);
 
-    if (Math.abs(dx) > 54 && Math.abs(dx) > Math.abs(dy) * 1.12) {
+    if (Math.abs(dx) > 42 && Math.abs(dx) > Math.abs(dy) * 1.08) {
       displayProduct(activeIndex + (dx > 0 ? 1 : -1), dx > 0 ? 1 : -1);
     }
   }
@@ -165,7 +165,7 @@ if (showcase) {
     event.stopImmediatePropagation();
   });
 
-  showcase.querySelector('#showcase-previous').addEventListener('click', () => displayProduct(activeIndex - 1, -1);
-  showcase.querySelector('#showcase-next').addEventListener('click', () => displayProduct(activeIndex + 1, 1);
+  showcase.querySelector('#showcase-previous').addEventListener('click', () => displayProduct(activeIndex - 1, -1));
+  showcase.querySelector('#showcase-next').addEventListener('click', () => displayProduct(activeIndex + 1, 1));
   dots.forEach((dot, dotIndex) => dot.addEventListener('click', () => displayProduct(dotIndex, dotIndex >= activeIndex ? 1 : -1)));
 }
