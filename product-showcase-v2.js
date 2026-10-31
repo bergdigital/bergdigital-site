@@ -60,34 +60,47 @@ if (showcase) {
   let suppressCardClick = false;
   let switching = false;
 
-  function displayProduct(nextIndex) {
+  async function displayProduct(nextIndex, direction = 1) {
     if (switching) return;
+    const next = (nextIndex + showcaseSlides.length) % showcaseSlides.length;
+    if (next === activeIndex) return;
     switching = true;
-    activeIndex = (nextIndex + showcaseSlides.length) % showcaseSlides.length;
+    const product = showcaseSlides[next];
+    layout.style.setProperty('--slide-direction', String(direction));
     layout.classList.add('is-changing');
+    card.style.removeProperty('--tilt-x');
+    card.style.removeProperty('--tilt-y');
 
-    window.setTimeout(() => {
-      const product = showcaseSlides[activeIndex];
-      image.src = product.image;
-      image.alt = product.alt;
-      category.textContent = product.category;
-      title.textContent = product.title;
-      description.textContent = product.description;
-      detailLink.href = product.href;
-      card.href = product.href;
-      card.setAttribute('aria-label', `${product.title} ürün detaylarını aç`);
-      currentCount.textContent = String(activeIndex + 1).padStart(2, '0');
-      dots.forEach((dot, dotIndex) => {
-        const active = dotIndex === activeIndex;
-        dot.classList.toggle('is-active', active);
-        if (active) dot.setAttribute('aria-current', 'true');
-        else dot.removeAttribute('aria-current');
-      });
-      layout.classList.remove('is-changing');
-      switching = false;
-    }, 110);
+    const preload = new window.Image();
+    const imageReady = new Promise((resolve) => {
+      preload.onload = resolve;
+      preload.onerror = resolve;
+      preload.src = product.image;
+      if (preload.complete) resolve();
+    });
+    const exitMotion = new Promise((resolve) => window.setTimeout(resolve, 260));
+    await Promise.all([imageReady, exitMotion]);
+
+    activeIndex = next;
+    image.src = product.image;
+    image.alt = product.alt;
+    category.textContent = product.category;
+    title.textContent = product.title;
+    description.textContent = product.description;
+    detailLink.href = product.href;
+    card.href = product.href;
+    card.setAttribute('aria-label', product.title + ' ürün detaylarını aç');
+    currentCount.textContent = String(activeIndex + 1).padStart(2, '0');
+    dots.forEach((dot, dotIndex) => {
+      const active = dotIndex === activeIndex;
+      dot.classList.toggle('is-active', active);
+      if (active) dot.setAttribute('aria-current', 'true');
+      else dot.removeAttribute('aria-current');
+    });
+
+    window.requestAnimationFrame(() => layout.classList.remove('is-changing'));
+    window.setTimeout(() => { switching = false; }, 520);
   }
-
   function resetCardTilt() {
     card.classList.remove('is-dragging');
     stage.classList.remove('is-dragging');
@@ -135,7 +148,7 @@ if (showcase) {
     window.setTimeout(() => { suppressCardClick = false; }, 350);
 
     if (Math.abs(dx) > 54 && Math.abs(dx) > Math.abs(dy) * 1.12) {
-      displayProduct(activeIndex + (dx > 0 ? 1 : -1));
+      displayProduct(activeIndex + (dx > 0 ? 1 : -1), dx > 0 ? 1 : -1);
     }
   }
 
@@ -152,7 +165,7 @@ if (showcase) {
     event.stopImmediatePropagation();
   });
 
-  showcase.querySelector('#showcase-previous').addEventListener('click', () => displayProduct(activeIndex - 1));
-  showcase.querySelector('#showcase-next').addEventListener('click', () => displayProduct(activeIndex + 1));
-  dots.forEach((dot, dotIndex) => dot.addEventListener('click', () => displayProduct(dotIndex)));
+  showcase.querySelector('#showcase-previous').addEventListener('click', () => displayProduct(activeIndex - 1, -1);
+  showcase.querySelector('#showcase-next').addEventListener('click', () => displayProduct(activeIndex + 1, 1);
+  dots.forEach((dot, dotIndex) => dot.addEventListener('click', () => displayProduct(dotIndex, dotIndex >= activeIndex ? 1 : -1)));
 }

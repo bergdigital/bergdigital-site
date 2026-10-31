@@ -251,13 +251,13 @@ footer small { margin-left: auto; color: #777; }
 .showcase-card-back { position: absolute; width: min(83%, 395px); aspect-ratio: 1; border-radius: 12px; border: 1px solid #ffffff1a; background: linear-gradient(145deg, #1a1a1a, #0b0b0b); box-shadow: 0 25px 70px #0009; transition: transform .45s cubic-bezier(.2,.7,.2,1); }
 .showcase-card-back-one { transform: translate(18px, 8px) rotate(8deg) translateZ(-24px); }
 .showcase-card-back-two { transform: translate(-16px, 3px) rotate(-7deg) translateZ(-48px); }
-.showcase-card { position: relative; display: block; width: min(90%, 430px); aspect-ratio: 1; border-radius: 11px; overflow: hidden; outline: 1px solid #ffffff35; background: #080808; box-shadow: 0 38px 95px #000c, 0 12px 35px #ff572222; transform-style: preserve-3d; transform: rotateX(var(--tilt-x, 2deg)) rotateY(var(--tilt-y, -7deg)) translateZ(18px); transition: transform .42s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease; will-change: transform; }
+.showcase-card { position: relative; display: block; width: min(90%, 430px); aspect-ratio: 1; border-radius: 11px; overflow: hidden; outline: 1px solid #ffffff35; background: #080808; box-shadow: 0 38px 95px #000c, 0 12px 35px #ff572222; transform-style: preserve-3d; transform: rotateX(var(--tilt-x, 2deg)) rotateY(var(--tilt-y, -7deg)) translateZ(18px); transition: transform .58s cubic-bezier(.22,.61,.36,1), opacity .26s ease, filter .26s ease, box-shadow .35s ease; will-change: transform, opacity, filter; }
 .showcase-card.is-dragging { transition: none; box-shadow: 0 48px 100px #000d, 0 15px 45px #ff572233; }
 .showcase-card:focus-visible { outline: 2px solid var(--orange); outline-offset: 5px; }
 .showcase-card img { display: block; width: 100%; height: 100%; object-fit: contain; pointer-events: none; -webkit-user-drag: none; }
 .showcase-card-glint { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(125deg, #ffffff18, transparent 24%, transparent 74%, #ff57220b); mix-blend-mode: screen; }
 .showcase-drag-note { position: absolute; z-index: 2; bottom: 12px; right: 1%; padding: 8px 11px; border: 1px solid #ffffff24; border-radius: 2px; background: #080808d9; color: #b8b4b0; font-size: 8px; letter-spacing: .16em; pointer-events: none; }
-.showcase-copy { position: relative; z-index: 1; }
+.showcase-copy { position: relative; z-index: 1; transition: opacity .26s ease, transform .42s cubic-bezier(.22,.61,.36,1), filter .26s ease; will-change: opacity, transform, filter; }
 .showcase-category { color: var(--orange); font-size: 9px; letter-spacing: .17em; margin: 0 0 15px; }
 .showcase-copy h3 { font-size: clamp(23px, 2.3vw, 32px); line-height: 1.12; letter-spacing: -.05em; font-weight: 500; margin: 0 0 14px; }
 .showcase-copy > p:not(.showcase-category) { color: #999; font-size: 12px; line-height: 1.75; margin: 0 0 20px; }
@@ -266,7 +266,7 @@ footer small { margin-left: auto; color: #777; }
 .showcase-controls { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 26px; }
 .showcase-controls button { min-height: 38px; padding: 0 13px; border: 1px solid #ffffff27; border-radius: 2px; background: transparent; color: #b4b0ac; font: 500 10px 'DM Sans', Arial, sans-serif; cursor: pointer; transition: color .2s, border-color .2s, background .2s; }
 .showcase-controls button:hover { color: #080808; border-color: var(--orange); background: var(--orange); }
-.showcase-layout.is-changing .showcase-card { transform: rotateX(2deg) rotateY(8deg) translateZ(4px) scale(.97); opacity: .82; }
+.showcase-layout.is-changing .showcase-card { transform: rotateX(2deg) rotateY(calc(var(--slide-direction, 1) * 12deg)) translateX(calc(var(--slide-direction, 1) * -20px)) translateZ(4px) scale(.96); opacity: 0; filter: blur(4px); }\n.showcase-layout.is-changing .showcase-copy { opacity: 0; transform: translateX(calc(var(--slide-direction, 1) * -9px)) translateY(7px); filter: blur(3px); }
 
 @media (max-width: 900px) {
   .showcase-layout { grid-template-columns: 52px minmax(300px, 1.2fr) minmax(190px, .85fr); gap: 22px; }
@@ -294,5 +294,5 @@ footer small { margin-left: auto; color: #777; }
   .showcase-drag-note { bottom: 5px; right: 4%; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .showcase-card, .showcase-card-back, .showcase-controls button, .showcase-dot { transition: none !important; }
+  .showcase-card, .showcase-card-back, .showcase-copy, .showcase-controls button, .showcase-dot { transition: none !important; }
 }
