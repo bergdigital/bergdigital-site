@@ -370,3 +370,5 @@ footer small { margin-left: auto; color: #777; }
 @media(max-width:720px){.tap-demo-section{padding:76px 0 82px}.tap-demo-heading{margin-bottom:32px}.tap-demo-heading h2{font-size:clamp(44px,12vw,62px)}.tap-demo-body{grid-template-columns:1fr;gap:30px}.tap-demo-stage{order:-1;min-height:465px}.tap-demo-phone{width:196px;height:410px;right:4%}.tap-demo-card-wrap{left:3%;width:min(43%,164px)}.tap-demo-card-caption{flex-direction:column;gap:4px;font-size:7px}.tap-demo-nfc{right:-11px;bottom:20px;width:45px;height:45px}.tap-demo-orbit{width:300px}.tap-demo-orbit-two{width:380px}.tap-demo-stage-note{bottom:13px;font-size:7px}.tap-demo-tab{min-height:54px;grid-template-columns:27px 1fr auto;gap:8px}.tap-demo-tab b{font-size:12px}.tap-demo-tab i{font-size:8px}}
 @media(max-width:380px){.tap-demo-stage{min-height:430px}.tap-demo-phone{width:176px;height:370px;right:2%}}
 @media(prefers-reduced-motion:reduce){.tap-demo-stage *,.tap-demo-tab{animation:none!important;transition:none!important}}
+
+.screen-instagram-embed{display:block;width:154%;height:154%;border:0;background:#fff;transform:scale(.65);transform-origin:top left}
