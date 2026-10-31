@@ -8,12 +8,15 @@ const tapDemoItems = [
 const section=document.querySelector("#tek-dokunus");
 if(section){
  const stage=section.querySelector("#tap-demo-stage"),image=section.querySelector("#tap-demo-card-image"),screen=section.querySelector("#tap-demo-phone-screen");
+ const phoneFrame=section.querySelector(".tap-demo-phone-frame");
+ const nfcNotice=document.createElement("div");nfcNotice.className="tap-demo-nfc-notice";nfcNotice.setAttribute("aria-hidden","true");nfcNotice.innerHTML='<span class="tap-demo-notice-icon">NFC</span><span class="tap-demo-notice-copy"><b>NFC etiketi okundu</b><small>Bağlantı açılıyor</small></span>';phoneFrame.appendChild(nfcNotice);
  const count=section.querySelector("#tap-demo-count"),title=section.querySelector("#tap-demo-title"),description=section.querySelector("#tap-demo-description");
  const tabs=[...section.querySelectorAll(".tap-demo-tab")];let active=0,changing=false,timer=null,started=false,step=0;
  function stop(){if(timer)window.clearInterval(timer);timer=null;}
  function select(index,manual){
   if(changing)return;const next=(index+tapDemoItems.length)%tapDemoItems.length;if(next===active)return;
   if(manual)stop();changing=true;const item=tapDemoItems[next];stage.classList.add("is-scanning");
+  phoneFrame.classList.add("has-nfc-notification");window.clearTimeout(phoneFrame._nfcNoticeTimer);phoneFrame._nfcNoticeTimer=window.setTimeout(()=>phoneFrame.classList.remove("has-nfc-notification"),2100);
   window.setTimeout(()=>{active=next;image.src=item.image;image.alt=item.alt;screen.innerHTML=item.screen;
    count.textContent=String(active+1).padStart(2,"0")+" / 05 — TEMASSIZ BAĞLANTI";title.textContent=item.title;description.textContent=item.description;
    tabs.forEach((tab,i)=>{const on=i===active;tab.classList.toggle("is-active",on);tab.setAttribute("aria-pressed",on?"true":"false");});
