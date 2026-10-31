@@ -14,3 +14,10 @@ document.querySelectorAll('a[href*=".html"]').forEach((link) => {
     }, 130);
   });
 });
+
+
+// Restore the page's visible state when browser Back/Forward restores it from cache.
+function resetPageTransition(){document.body?.classList.remove('leaving')}
+window.addEventListener('pageshow',resetPageTransition);
+window.addEventListener('pagehide',resetPageTransition);
+window.addEventListener('popstate',resetPageTransition);
